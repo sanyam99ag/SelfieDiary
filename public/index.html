@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Selfi App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Data Selfi App.</h1>
+    <p>This is practice project originally made by Joyee Lee and is tought by codingtrain channel</p>
+    <form action="/all.html">
+        <input type="submit" value="Display Database" />
+    </form><br>
+
+    Longitude: <span id="lon"></span>&deg;<br>
+    Latitude: <span id="lat"></span>&deg;
+
+    <br>
+    <label for="Caption">Enter the Caption:</label>
+    <input type="text" name="Caption" id="caption"><br>
+    <button id="geolocate">Function</button>
+    <button id="opencamera">Open Camera</button>
+    <button id="closecamera">Close Camera</button>
+    <br>
+    <br>
+    <script>
+        function setup() {
+
+            noCanvas();
+            let video;
+            document.getElementById('opencamera').addEventListener('click', async event => {
+                video = createCapture(VIDEO);
+                video.size(220, 140);
+                // capture.hide();
+            });
+            document.getElementById('closecamera').addEventListener('click', async event => {
+                video.remove();
+            });
+
+            let lat, lon;
+            document.getElementById('geolocate').addEventListener('click', async event => {
+                const caption = document.getElementById('caption').value;
+                document.getElementById('caption').value = "";
+                video.loadPixels();
+                const image64 = video.canvas.toDataURL();
+                const data = { caption, lon, lat, image64 };
+
+                // data to be sent to the server
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+
+                // fetch('/api', options).then(Response => {
+                //     console.log(Response);
+                // }) 
+                const response = await fetch('/api', options);
+                const json = await response.json();
+                console.log(json)
+            });
+
+
+            if ('geolocation' in navigator) {
+                console.log('Got the Geolocation')
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    console.log(position)
+                    lon = position.coords.longitude;
+                    lat = position.coords.latitude;
+                    console.log(lat, lon)
+                    document.getElementById('lon').textContent = lon;
+                    document.getElementById('lat').textContent = lat;
+                });
+            } else {
+                console.log('Didn\'t got the Geolocation')
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
