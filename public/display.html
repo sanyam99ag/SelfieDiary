@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
+    <script src="./assets/js/display.js"></script>
+
     <link rel="icon" href="./assets/img/camera.svg" type="image/icon type">
 
     <style>
@@ -48,6 +53,10 @@
             text-align: center;
         }
         
+        img {
+            border-radius: 28px;
+        }
+        
         .page-footer {
             padding-top: 0px;
         }
@@ -60,11 +69,11 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">Selfie Book</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="/">Selfie Book</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="display.html">View-Book</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="diaplay.html">View-Book</a></li>
                 </ul>
             </div>
             <!-- Github Banner-->
@@ -75,61 +84,34 @@
 
 
 
-    <main class="page landing-page">
-
-        <section class="clean-block clean-info dark">
+    <main class="page blog-post-list">
+        <section class="clean-block clean-blog-list dark">
             <div class="container">
-
                 <div class="block-heading">
-                    <h2>Save Moment To Cherish Later!</h2>
-                    <br>
-                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p> -->
+                    <h2 class="text-info">Data Book</h2>
+                    <p> See and remind of these moments, surely smile will be there! </p>
                 </div>
-                <div class="col-md-8 clean-pricing-item" style="margin: auto; text-align: center;">
+                <div class="block-content" id="book">
 
-                    <div class="features ">
-                        <h4><span class="feature">Longitude:&nbsp;</span><span id="lon"></span></h4>
-                        <h4><span class="feature">Latitude:&nbsp;</span><span id="lat"></span></h4>
-                        <span id="click">
-                        <button class="btn btn-primary" id="opencamera" type="button" data-toggle="modal" data-target="#modal"><i class="icon-camera" ></i>Take a selfie</button>
-                    </span>
-                        <br>
-                        <br>
-
-                        <div class="form-group" style="text-align: center;"><label for="caption"><h4><span class="feature">Enter the Caption:</h4></label><input class="form-control item" type="text" id="caption" placeholder="Give Words to the Momet!"></div>
-                        <div class="form-group"><button class="btn btn-primary btn-block" id="geolocate" type="button">Save the Moment</button></div>
-
-                    </div>
-                </div>
-
-                <!-- The Modal -->
-                <div class="modal" id="modal">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-
-                            <div class="row align-items-center">
-                                <div id="camera" style="padding: 3px;"></div>
-
-                                <button class="btn btn-primary" type="button" style="margin: auto;" onclick="takeSnapShot()"><i class="icon-camera"></i></button>
-                                <button class="btn btn-primary" type="button" style="margin: auto;" onclick="down()"><i class="icon-arrow-down"></i></button>
-                                <button class="btn btn-primary" type="button" data-dismiss="modal" style="margin: auto;" onclick="clicked()"><i class="icon-arrow-right-circle"></i></button>
-
+                    <!-- <div class="clean-blog-post">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img class="rounded img-fluid" src="assets/img/tech/image4.jpg">
                             </div>
-
-
+                            <div class="col-lg-7">
+                                <h3>CAPTIon Lorem Ipsum dolor sit amet</h3>
+                                <div class="info">
+                                    <span class="text-muted">Jan 16, 2018</span>
+                                    <br> <span> Longitude: </span> <span class="text-muted">Jan 16, 2018</span>
+                                    <br> <span>  Latitude: </span> <span class="text-muted">Jan 16, 2018</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </div> -->
+
                 </div>
-
-
-
-
             </div>
         </section>
-
-
-
-
     </main>
 
     <footer class="page-footer dark">
@@ -143,9 +125,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/script.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-    <script src="./assets/js/setup.js"></script>
 </body>
 
 </html>
