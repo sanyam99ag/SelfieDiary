@@ -5,19 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selfie Book</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="./assets/css/smoothproducts.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/baguetteBox.min.css">
+    <link rel="stylesheet" href="/css/smoothproducts.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.js"></script>
-    <script src="./assets/js/display.js"></script>
+    <script src="/js/display.js"></script>
 
-    <link rel="icon" href="./assets/img/camera.svg" type="image/icon type">
+    <link rel="icon" href="/img/camera.svg" type="image/icon type">
 
     <style>
         .github-corner:hover .octo-arm {
@@ -48,11 +48,6 @@
             }
         }
         
-        input[type="text"]::placeholder {
-            /* Firefox, Chrome, Opera */
-            text-align: center;
-        }
-        
         img {
             border-radius: 28px;
         }
@@ -72,8 +67,7 @@
         <div class="container"><a class="navbar-brand logo" href="/">Selfie Book</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="diaplay.html">View-Book</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Login</a></li>
                 </ul>
             </div>
             <!-- Github Banner-->
@@ -83,34 +77,41 @@
     </nav>
 
 
-
-    <main class="page blog-post-list">
-        <section class="clean-block clean-blog-list dark">
+    <main class="page registration-page">
+        <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text-info">Data Book</h2>
-                    <p> See and remind of these moments, surely smile will be there! </p>
+                    <h2 class="text-info">Registration</h2>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p> -->
                 </div>
-                <div class="block-content" id="book">
-
-                    <!-- <div class="clean-blog-post">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <img class="rounded img-fluid" src="assets/img/tech/image4.jpg">
+                <div style="margin: 0 auto;" class="col-12 col-md-6 col-lg-5 p-5 customborder">
+                    <form action="/register" method="POST">
+                        <% if(typeof err != 'undefined') {%>
+                            <div class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong> <%= err %> </strong>
                             </div>
-                            <div class="col-lg-7">
-                                <h3>CAPTIon Lorem Ipsum dolor sit amet</h3>
-                                <div class="info">
-                                    <span class="text-muted">Jan 16, 2018</span>
-                                    <br> <span> Longitude: </span> <span class="text-muted">Jan 16, 2018</span>
-                                    <br> <span>  Latitude: </span> <span class="text-muted">Jan 16, 2018</span>
+                            <%}%>
+                                <div class="form-group">
+                                    <label for="username">Name</label>
+                                    <input type="text" class="form-control" name="username" id="username" autocomplete="off" placeholder="Username" value="<%= typeof username != 'undefined' ? username : '' %>">
                                 </div>
-                            </div>
-                        </div>
-                    </div> -->
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" autocomplete="off" placeholder="Email" value="<%= typeof email != 'undefined' ? email : '' %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" autocomplete="off" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmpassword">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" autocomplete="off" placeholder="Confirm Password"> </div>
+                                <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+                                <p>Already Registered ? <a class="card-link" href="/login">LOGIN Here</a> </p>
 
+                    </form>
                 </div>
-            </div>
         </section>
     </main>
 
@@ -124,7 +125,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/script.min.js"></script>
+    <script src="/js/script.min.js"></script>
 </body>
 
 </html>

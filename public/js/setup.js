@@ -71,13 +71,10 @@ function setup() {
 
         const image64 = imgsrc;
 
-
-        // Change to default after completion
         document.getElementById('click').innerHTML =
             '<button class="btn btn-primary" id="opencamera" type="button" data-toggle="modal" data-target="#modal"><i class="icon-camera" ></i>Take a selfie</button>';
 
 
-        // data to be sent to the server
 
         const data = {
             caption,
@@ -86,16 +83,22 @@ function setup() {
             image64
         };
 
-        const options = {
+        fetch('/api', {
             method: 'POST',
+            body: JSON.stringify({
+                caption,
+                lon,
+                lat,
+                image64
+            }),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }
+            }
+        }).then(function(res) {
+            return res.json();
+        })
 
-        const response = await fetch('/api', options);
-        const json = await response.json();
+
     });
 
 
