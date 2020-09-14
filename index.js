@@ -65,7 +65,7 @@ const checkAuthenticated = function(req, res, next) {
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/selfiediary', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() => console.log('Database connected')).catch(err => console.log(err));
+}).then(() => console.log('Database connected')).catch(err => console.log("database connectivity error " + err));
 
 
 // Initial Register route
@@ -223,6 +223,7 @@ app.post('/api', checkAuthenticated, async(req, res) => {
                         console.log(error);
                         return res.status(404).json({ success: false, msg: "Something went wrong. Please try again" });
                     }
+                    console.log(savedData)
 
                     req.flash('success_message', "Memory Saved!");
 
