@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const slotSchema = new mongoose.Schema({
+const dataSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
@@ -22,4 +22,4 @@ const slotSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("data", slotSchema);
+module.exports = mongoose.model("data", dataSchema);
