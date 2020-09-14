@@ -22,4 +22,4 @@ const dataSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("data", dataSchema);
+module.exports = mongoose.model("Data", dataSchema);

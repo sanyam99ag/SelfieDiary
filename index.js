@@ -2,9 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser');
 const bcrypt = require('bcryptjs')
-const user = require('./user.js')
+const User = require('./user.js')
     // const data = require('./data.js')
-const data = require('./data.js');
+const Data = require('./data.js');
 const passport = require('passport')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
@@ -92,7 +92,7 @@ app.post('/register', async(req, res) => {
 
     // if everything is fine then check for exiting email in db
     if (typeof err == 'undefined') {
-        const check = await user.exists({ email: req.body.email })
+        const check = await User.exists({ email: req.body.email })
         if (check == false) {
             bcrypt.genSalt(10, async(err, salt) => {
                 if (err) throw err;
@@ -101,7 +101,7 @@ app.post('/register', async(req, res) => {
                     password = hash;
 
                     // save new user
-                    await user.create({
+                    await User.create({
                         email,
                         username,
                         password
@@ -123,7 +123,7 @@ app.post('/register', async(req, res) => {
 // PassportJs Authentication Strategy
 var localStrategy = require('passport-local').Strategy;
 passport.use(new localStrategy({ usernameField: 'email' }, async(email, password, done) => {
-    user.findOne({ email: email }, async(err, data) => {
+    User.findOne({ email: email }, async(err, data) => {
         if (err) throw err;
         if (!data) {
             return done(null, false, { message: "User Doesn't Exists.." });
@@ -147,7 +147,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-    user.findById(id, function(err, user) {
+    User.findById(id, function(err, user) {
         cb(err, user);
     });
 });
@@ -196,14 +196,14 @@ app.post('/api', checkAuthenticated, async(req, res) => {
     // console.log(info);
 
 
-    const newData = await new data({
+    const newData = await new Data({
         latitude: info.lat,
         longitude: info.lon,
         timestamp: timestamp,
         image: info.image64,
         caption: info.caption
     });
-
+    console.log(newData)
     newData.save(async(error, savedData) => {
         if (error) {
             console.log(error);
@@ -211,7 +211,7 @@ app.post('/api', checkAuthenticated, async(req, res) => {
         }
 
         if (savedData) {
-            user.findById(req.user._id, async(error, foundUser) => {
+            User.findById(req.user._id, async(error, foundUser) => {
                 if (error) {
                     console.log(error);
                     return res.status(404).json({ success: false, msg: "Something went wrong. Please try again" });
@@ -235,7 +235,7 @@ app.post('/api', checkAuthenticated, async(req, res) => {
 })
 
 app.get('/display', async(req, res) => {
-        user.findById(req.user._id).populate("data").exec(async(error, foundUser) => {
+        User.findById(req.user._id).populate("data").exec(async(error, foundUser) => {
             if (error) {
                 console.log(error);
                 return res.redirect('/404')
