@@ -15,6 +15,8 @@ const { response } = require('express');
 
 
 const app = express();
+PORT = process.env.PORT || 5000;
+
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
@@ -58,11 +60,13 @@ const checkAuthenticated = function(req, res, next) {
     }
 }
 
-// mongoose connection
-mongoose.connect('mongodb://localhost/nodeAuthentication', {
+
+// Mongoose connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/selfiediary', {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() => console.log('Database connected'));
+}).then(() => console.log('Database connected')).catch(err => console.log(err));
+
 
 // Initial Register route
 app.get('/', async(req, res) => {
@@ -251,4 +255,4 @@ app.get('/logout', async(req, res) => {
 })
 
 
-app.listen(5000, () => console.log('Listening to the port 5000'));
+app.listen(PORT, () => console.log(`Listening to the port ${PORT}`));
