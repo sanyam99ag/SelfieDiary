@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dataSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+        ref: 'user'
     },
     longitude: {
         type: String,
