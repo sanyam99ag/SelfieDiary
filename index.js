@@ -9,12 +9,13 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('connect-flash');
 const { response } = require('express');
-
-// const { Strategy } = require('passport-local')
+require('dotenv').config()
+    // const { Strategy } = require('passport-local')
 
 
 const app = express();
 PORT = process.env.PORT || 5000;
+const MAP_API = process.env.MAP_API
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -167,7 +168,7 @@ app.post('/login', (req, res, next) => {
 
 // Success route
 app.get('/index', checkAuthenticated, async(req, res) => {
-    res.render('index', { 'user': req.user });
+    res.render('index', { 'user': req.user, 'MAP_API': MAP_API });
 });
 
 app.get('/api', checkAuthenticated, async(req, res) => {

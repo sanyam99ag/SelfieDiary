@@ -1,5 +1,3 @@
-const MAP_API = process.env.MAP_API
-
 function setup() {
 
     // Fetch the Geolocation
@@ -14,6 +12,8 @@ function setup() {
             // console.log(lat, lon)
             document.getElementById('lon').textContent = lon;
             document.getElementById('lat').textContent = lat;
+            const MAP_API = document.getElementsByClassName("feature")[3].innerHTML;
+
             const url = 'http://www.mapquestapi.com/geocoding/v1/reverse?key=' + MAP_API + '&location=' + lat + ',' + lon + '&includeRoadMetadata=true&includeNearestIntersection=true'
             let address;
             $.getJSON(url, function(data) {
