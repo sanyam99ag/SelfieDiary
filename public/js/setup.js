@@ -1,22 +1,39 @@
+// const MAP_API = process.env.MAP_API
+
 function setup() {
 
     // Fetch the Geolocation
     let lat, lon;
     if ('geolocation' in navigator) {
-        console.log('Got the Geolocation')
+        // console.log('Got the Geolocation')
         navigator.geolocation.getCurrentPosition(async(position) => {
-            console.log(position)
-            lon = position.coords.longitude;
-            lat = position.coords.latitude;
-            console.log(lat, lon)
+            // console.log(position)
+            lon = position.coords.longitude.toFixed(4);
+            lat = position.coords.latitude.toFixed(4);
+
+            // console.log(lat, lon)
             document.getElementById('lon').textContent = lon;
             document.getElementById('lat').textContent = lat;
+            const url = 'http://www.mapquestapi.com/geocoding/v1/reverse?key=' + MAP_API + '&location=' + lat + ',' + lon + '&includeRoadMetadata=true&includeNearestIntersection=true'
+            let address;
+            $.getJSON(url, function(data) {
+                address = data.results[0].locations[0].street + ' ' +
+                    data.results[0].locations[0].adminArea6 + ' ' +
+                    data.results[0].locations[0].adminArea5 + ' ' +
+                    data.results[0].locations[0].adminArea4 + ' ' +
+                    data.results[0].locations[0].adminArea3 + ' ' +
+                    data.results[0].locations[0].adminArea1 + ', ' +
+                    data.results[0].locations[0].postalCode;
+                document.getElementById('add').textContent = address;
+
+            });
+
+
         });
     } else {
         alert('Unable to fetch Geolocation, adjust you connection!')
-        console.log('Didn\'t got the Geolocation')
+            // console.log('Didn\'t got the Geolocation')
     }
-
 
     // Open and Close Camera Functionality
     document.getElementById('opencamera').addEventListener('click', async event => {
