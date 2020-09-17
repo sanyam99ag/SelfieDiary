@@ -1,4 +1,4 @@
-// const MAP_API = process.env.MAP_API
+const MAP_API = process.env.MAP_API
 
 function setup() {
 
