@@ -1,0 +1,15 @@
+{
+    "name": "Selfie Diary",
+    "short_name": "SelfieDiary",
+    "theme_color": "#ffcbe4",
+    "background_color": "#fa99ca",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "https://selfiediary.herokuapp.com/",
+    "description": "Website to manage and store the selfies with the story with it",
+    "orientation": "any",
+    "icons": [{
+        "src": "/img/camera.svg",
+        "sizes": "1024x1024"
+    }]
+}
