@@ -14,7 +14,7 @@ function setup() {
             document.getElementById('lat').textContent = lat;
             const MAP_API = document.getElementsByClassName("feature")[3].innerHTML;
 
-            const url = 'http://www.mapquestapi.com/geocoding/v1/reverse?key=' + MAP_API + '&location=' + lat + ',' + lon + '&includeRoadMetadata=true&includeNearestIntersection=true'
+            const url = `https://www.mapquestapi.com/geocoding/v1/reverse?key=${MAP_API}&location=${lat},${lon}&includeRoadMetadata=true&includeNearestIntersection=true`
             let address;
             $.getJSON(url, function(data) {
                 address = data.results[0].locations[0].street + ' ' +
